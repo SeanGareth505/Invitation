@@ -1,4 +1,6 @@
-﻿using InivitationApplication.Services.Interfaces;
+﻿using Azure.Core;
+using InivitationApplication.DTOs;
+using InivitationApplication.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace InivitationApplication.Controllers
@@ -14,6 +16,7 @@ namespace InivitationApplication.Controllers
             _invitationService = invitationService;
         }
 
+
         [HttpGet]
         public async Task<IActionResult> GetAllInvitations()
         {
@@ -25,6 +28,28 @@ namespace InivitationApplication.Controllers
             catch (Exception ex)
             {
                 // Handle exceptions and return an error response if necessary
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
+        [HttpPost("test")]
+        public async Task<IActionResult> test([FromBody] testDto randomText)
+        {
+
+            try
+            {
+                if (string.IsNullOrWhiteSpace(randomText.RandomText))
+                {
+                    return BadRequest("Invalid request payload");
+                }
+
+                await _invitationService.AddRandomText(randomText.RandomText);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                // Log the exception details for debugging
+                // Consider returning a more specific error message depending on the exception
                 return StatusCode(500, "Internal server error");
             }
         }

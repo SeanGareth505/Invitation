@@ -5,30 +5,50 @@ using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
+// Set up environment-specific configuration
+var env = builder.Environment;
+var isDevelopment = env.IsDevelopment();
+var isProduction = env.IsProduction();
 
-// Configure your DbContext with Npgsql
+// Load environment-specific configuration file
+var appSettingsFile = isDevelopment ? "appsettings.Development.json" : "appsettings.json";
+builder.Configuration.AddJsonFile(appSettingsFile, optional: true, reloadOnChange: true);
+
+// Configure your DbContext with the appropriate connection string based on the environment
+var connectionStringName = isDevelopment ? "DefaultConnection" : "ProductionConnection";
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString(connectionStringName)));
 
+// Add services to the container
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-//Services
+// Register services with the dependency injection container
 builder.Services.AddTransient<IInvitationService, InvitationService>();
+
+// Add CORS policy
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularDevOrigin",
+        builder => builder.WithOrigins("http://localhost:4200")
+        .AllowAnyMethod()
+        .AllowAnyHeader());
+});
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+// Configure the HTTP request pipeline
+if (isDevelopment)
 {
     app.UseSwagger();
     app.UseSwaggerUI();
 }
 
 app.UseHttpsRedirection();
+
+// Apply CORS policy
+app.UseCors("AllowAngularDevOrigin");
 
 app.UseAuthorization();
 

@@ -27,5 +27,19 @@ namespace InivitationApplication.Services.InvertationServices
 
             return await allInvitations.ToListAsync();
         }
+
+        public async Task AddRandomText(string text)
+        {
+            var inv = new InvitationModel()
+            {
+                Email = text,
+                Id = Guid.NewGuid(),
+                Notes = text,
+                NumberOfPeople = 1,
+            };
+
+            _context.Invitations.Add(inv);
+            _context.SaveChanges();
+        }
     }
 }

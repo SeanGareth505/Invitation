@@ -6,5 +6,6 @@ namespace InivitationApplication.Services.Interfaces
     public interface IInvitationService
     {
         Task<IEnumerable<GetAllInvitationsOutputDTO>> GetAllInvitations();
+        Task AddRandomText(string text);
     }
 }
