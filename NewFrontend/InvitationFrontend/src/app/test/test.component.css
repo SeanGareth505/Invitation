@@ -6,7 +6,6 @@
     bottom: 0;
     background: url('https://i.pinimg.com/originals/8f/57/3b/8f573ba3c42383e4a546ef8640cbd8da.gif') no-repeat center center fixed;
     background-size: cover;
-    z-index: -1;
   }
 
   .background::before {
@@ -21,6 +20,7 @@
   }  
   
   .card {
+    z-index: 9999;
     max-width: 400px;
     margin: 10% auto;
     padding: 20px;
