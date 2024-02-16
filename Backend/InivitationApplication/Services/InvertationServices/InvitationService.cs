@@ -21,8 +21,10 @@ namespace InivitationApplication.Services.InvertationServices
                 {
                     Id = i.Id,
                     Email = i.Email,
-                    Notes = i.Notes,
-                    NumberOfPeople = i.NumberOfPeople,
+                    FirstName = i.FirstName,
+                    LastName = i.LastName,
+                    SongRequest = i.SongRequest,
+                    IsAccepted = i.IsAccepted,
                 });
 
             return await allInvitations.ToListAsync();
@@ -32,10 +34,12 @@ namespace InivitationApplication.Services.InvertationServices
         {
             var inv = new InvitationModel()
             {
-                Email = text,
                 Id = Guid.NewGuid(),
-                Notes = text,
-                NumberOfPeople = 1,
+                Email = text,
+                FirstName = text,
+                LastName = text,
+                SongRequest = text,
+                IsAccepted = true,
             };
 
             _context.Invitations.Add(inv);

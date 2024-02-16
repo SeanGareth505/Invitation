@@ -13,11 +13,13 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { InputTextModule } from 'primeng/inputtext';
+import { MainpageComponent } from './mainpage/mainpage.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TestComponent
+    TestComponent,
+    MainpageComponent
   ],
   imports: [
     BrowserModule,

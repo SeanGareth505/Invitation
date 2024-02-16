@@ -8,6 +8,7 @@ import { ApiService } from '../services/api.service';
 })
 export class TestComponent {
   value: string = '';
+  firstName: string = '';
   private intervalId: any
 
   constructor(private _apiService: ApiService, private el: ElementRef, private renderer: Renderer2) {
