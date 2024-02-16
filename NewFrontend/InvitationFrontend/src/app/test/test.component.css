@@ -9,7 +9,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #d4d4d4 !important;
+  background-color: #f9f3ee !important;
   background-size: contain;
   /* background-image: url('https://img.freepik.com/free-photo/top-view-wedding-floral-frame_23-2148242391.jpg?w=1380&t=st=1708079867~exp=1708080467~hmac=65f5ea83068249ab71cd514bdb172cef3de2214c35fa9f00fd80775fbcdf4eb9');  */
   background-repeat: no-repeat;
@@ -20,21 +20,51 @@
   z-index: 2;
   height: 98%;
   width: 60%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19); /* Card shadow */
-  border-radius: 4px; /* Adds rounded corners to the card */
-  background: url('../../assets/invite.png') no-repeat center center; /* Sets the background image */
-  background-size: cover; /* Ensures the background covers the card */
-  color: #333; /* Adjusts text color for readability */
-  display: flex; /* Enables Flexbox layout */
-  flex-direction: column; /* Stacks children vertically */
-  justify-content: flex-start; /* Align items to the start */
-  padding-top: 5%; /* Less padding on top to push content up */
-  padding-bottom: 15%; /* More padding at the bottom to keep content up */
-  align-items: center; /* Centers children horizontally */
-  text-align: center; /* Ensures text within children is centered, if needed */
-  position: relative; /* Needed for absolute positioning inside */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19); 
+  border-radius: 4px; 
+  background: url('../../assets/invite.png') no-repeat center center; 
+  background-size: cover;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; 
+  padding-top: 5%;
+  padding-bottom: 15%;
+  align-items: center;
+  text-align: center;
+  position: relative;
 }
 
 .card > :first-child {
-  margin-top: 50px; /* Adjust this value as needed */
+  margin-top: 50px;
+}
+
+.flower-field {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  animation: fall 5s linear infinite;
+  z-index: 9999;
+}
+
+.flower {
+  position: absolute;
+  width: 20px; 
+  height: 20px; 
+  background-size: cover;
+  will-change: transform;
+  pointer-events: none;
+  
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(calc(100vh - 50px)); /* Adjust based on the flower size */
+    opacity: 0;
+  }
 }

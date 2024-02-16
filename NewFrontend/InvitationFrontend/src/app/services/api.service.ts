@@ -16,8 +16,8 @@ export class ApiService {
   }
 
   testInvitation(randomText: string): Observable<any> {
-    const body = JSON.stringify({ randomText: randomText }); // Correctly format the body as a JSON string
-    const headers = new HttpHeaders().set('Content-Type', 'application/json'); // Ensure headers are set to application/json
+    const body = JSON.stringify({ randomText: randomText });
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.http.post(`${this.baseUrl}/Invitation/test`, body, { headers });
   }
