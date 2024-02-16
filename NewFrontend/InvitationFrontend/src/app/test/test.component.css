@@ -1,28 +1,40 @@
-.background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: url('https://i.pinimg.com/originals/8f/57/3b/8f573ba3c42383e4a546ef8640cbd8da.gif') no-repeat center center fixed;
-    background-size: cover;
-  }
 
-  .background::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    background: rgba(0, 0, 0, 0.10); /* Black with 50% opacity */
-    z-index: 0;
-  }  
-  
-  .card {
-    z-index: 9999;
-    max-width: 400px;
-    margin: 10% auto;
-    padding: 20px;
-    background-color: rgba(255, 255, 255, 0.3);
-  }
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0px;
+  right: 0;
+  bottom: 0; /* Replaces the second 'left: 0;' with 'bottom: 0;' for full coverage */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #d4d4d4 !important;
+  background-size: contain;
+  /* background-image: url('https://img.freepik.com/free-photo/top-view-wedding-floral-frame_23-2148242391.jpg?w=1380&t=st=1708079867~exp=1708080467~hmac=65f5ea83068249ab71cd514bdb172cef3de2214c35fa9f00fd80775fbcdf4eb9');  */
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+.card {
+  z-index: 2;
+  height: 98%;
+  width: 60%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19); /* Card shadow */
+  border-radius: 4px; /* Adds rounded corners to the card */
+  background: url('../../assets/invite.png') no-repeat center center; /* Sets the background image */
+  background-size: cover; /* Ensures the background covers the card */
+  color: #333; /* Adjusts text color for readability */
+  display: flex; /* Enables Flexbox layout */
+  flex-direction: column; /* Stacks children vertically */
+  justify-content: flex-start; /* Align items to the start */
+  padding-top: 5%; /* Less padding on top to push content up */
+  padding-bottom: 15%; /* More padding at the bottom to keep content up */
+  align-items: center; /* Centers children horizontally */
+  text-align: center; /* Ensures text within children is centered, if needed */
+  position: relative; /* Needed for absolute positioning inside */
+}
+
+.card > :first-child {
+  margin-top: 50px; /* Adjust this value as needed */
+}
