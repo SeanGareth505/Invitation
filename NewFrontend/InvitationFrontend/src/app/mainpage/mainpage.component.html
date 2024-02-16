@@ -1,8 +1,59 @@
-<div class="flex flex-row">
-  <div class="main-image">
-    <h3>Testing</h3>
-  </div>
-  <div>
+<div class="grid grid-main">
+  <div class="col left-side">
 
+  </div>
+  <div class="col right-side">
+    <div class="scrollable-content">
+      <form [formGroup]="invitationForm" (ngSubmit)="onSubmit()" class="card">
+        <div class="grid fluid">
+          <div class="col">
+            <mat-form-field appearance="outline">
+              <mat-label>Email</mat-label>
+              <input matInput type="email" formControlName="email">
+              <mat-error *ngIf="invitationForm.get('email')?.hasError('required') ">
+                Email is required
+              </mat-error>
+              <mat-error *ngIf="invitationForm.get('email')?.hasError('email') ">
+                Email not valid
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field appearance="outline">
+              <mat-label>First Name</mat-label>
+              <input matInput type="text" formControlName="firstName">
+              <mat-error *ngIf="invitationForm.get('firstName')?.hasError('required') ">
+                First Name is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field appearance="outline">
+              <mat-label>Last Name</mat-label>
+              <input matInput type="text" formControlName="lastName">
+              <mat-error *ngIf="invitationForm.get('lastName')?.hasError('required') ">
+                Last Name is required
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-form-field appearance="outline">
+              <mat-label>Song Request</mat-label>
+              <input matInput type="text" formControlName="songRequest">
+            </mat-form-field>
+          </div>
+
+          <div class="col">
+            <mat-checkbox formControlName="isAccepted">Is Accepted</mat-checkbox>
+          </div>
+        </div>
+
+        <button mat-raised-button color="primary" type="submit" >Submit</button>
+      </form>
+
+    </div>
   </div>
 </div>
