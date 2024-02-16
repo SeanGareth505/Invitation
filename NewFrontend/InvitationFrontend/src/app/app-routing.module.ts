@@ -4,7 +4,7 @@ import { TestComponent } from './test/test.component';
 
 const routes: Routes = [
   { path: '', component: TestComponent },
-  { path: '/test', component: TestComponent }
+  { path: 'test', component: TestComponent }
 ];
 
 @NgModule({
