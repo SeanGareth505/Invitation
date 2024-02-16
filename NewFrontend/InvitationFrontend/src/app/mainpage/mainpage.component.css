@@ -1,15 +1,3 @@
-/* .main-image {
-    background: url('https://primefaces.org/cdn/primeng/images/galleria/galleria1.jpg') no-repeat;
-    position: relative;
-    background-size: cover;
-    top: 0;
-    bottom: 0;
-    right: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-} */
-
 .scrollable-content {
     overflow-y: auto;
     height: 100%;
@@ -17,57 +5,53 @@
 }
 
 .left-side {
+    padding: 0%;
     background-size: cover;
-    background-position: center;
-    height: 100vh;
-    background-image: url('https://images.unsplash.com/photo-1591604466107-ec97de577aff?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8d2VkZGluZyUyMGNvdXBsZXxlbnwwfHwwfHx8MA%3D%3D');
-    /* Add a grayscale filter to give a vintage feel */
-      /* Increase contrast for a more vibrant appearance */
-      filter: contrast(110%);
-
-      /* Add a slight saturation boost */
-      filter: saturate(110%);
-  
-      /* Apply a subtle brightness increase */
-      filter: brightness(105%);
-  
-      /* Add a slight blur to smooth out imperfections */
-      filter: blur(0.5px);
-  
-      /* Apply a slight hue rotation for color correction */
-      filter: hue-rotate(5deg);
-  
-      /* Add a subtle drop shadow for depth */
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-  
-      /* Ensure the image maintains its original aspect ratio */
-      /* object-fit: cover; */
-  
-
-    /* Add a slight blur for a softer look */
-    /* filter: blur(1px); */
-
-    /* Add a sepia tone for a warm, nostalgic vibe */
-    /* filter: sepia(30%); */
-
-    /* Add a combination of filters for a unique effect */
-    /* filter: grayscale(10%) blur(1px) sepia(30%); */
+    border-right: 1.5px solid black;
+    background-image: url('https://images.unsplash.com/photo-1591604466107-ec97de577aff?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8d2VkZGluZyUyMGNvdXBsZXxlbnwwfHwwfHx8MA%3D%3D') ;
+    filter: hue-rotate(5deg);
 }
 
+.invitation-header {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px; 
+    justify-content: center;
+    background-color: #fdf9f1; 
+    height: 7%; 
+    border: 0.5px solid black;
+    align-items: center;
+    display: flex;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  }
+
 .card {
-    border-radius: 0.5rem;
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     background-color: #fff;
     padding: 10px;
+    height: 100%;
 }
 
 .right-side {
-    background-color: #f3f1f1;
-    /* fiddle with background */
+    padding: 0%;
     overflow-y: auto;
     height: 100vh;
-    border-radius: 0.5rem;
-    /* box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04); */
+    background-color: #ffbc99;
+}
+
+.right-side::-webkit-scrollbar-track {
+    background-color: #f0e1d2;
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+}
+
+.right-side::-webkit-scrollbar-thumb {
+    background-color: #b85c50;
+    border-radius: 10px;
+    border: 2px solid #d3a991; 
+}
+
+.right-side::-webkit-scrollbar {
+    width: 10px;
 }
 
 .grid-main {
@@ -77,6 +61,24 @@
     overflow: hidden;
 }
 
+.circle-card {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 100px; 
+    height: 100px;
+    background-color: #fff8eb; 
+    border-radius: 50%; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 24px; 
+    color: black; 
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    z-index: 10; 
+    /* border: 0.1px solid black; */
+}
 
 @media (max-width: 768px) {
     .grid {
@@ -91,5 +93,16 @@
     .right-side {
         height: 50vh;
         overflow-y: auto;
+    }
+
+    .circle-card {
+        top: 47%;
+        width: 100px; 
+        height: 100px;
+        font-size: 20px;
+    }
+
+    .invitation-header{
+        font-size: 23px;
     }
 }
