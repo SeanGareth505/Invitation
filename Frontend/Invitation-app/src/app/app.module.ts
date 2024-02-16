@@ -7,9 +7,11 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiService } from './services/api.service';
+import { TestComponent } from './test/test.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    TestComponent
   ],
   imports: [
     BrowserModule,
@@ -17,7 +19,7 @@ import { ApiService } from './services/api.service';
     InputTextareaModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule 
+    HttpClientModule
   ],
   providers: [ApiService],
   bootstrap: [AppComponent]
