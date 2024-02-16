@@ -22,7 +22,7 @@
   width: 60%;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19); 
   border-radius: 4px; 
-  background: url('../../assets/invite.png') no-repeat center center; 
+  /* background: url('../../assets/invite.png') no-repeat center center;  */
   background-size: cover;
   color: #333;
   display: flex;
