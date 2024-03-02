@@ -26,23 +26,21 @@
 }
 
 .MrAndMrsImage {
-  padding-top: 10rem;
-  padding-bottom: 10rem;
-  background-size: cover;
   filter: hue-rotate(5deg);
+  padding: 0px !important;
 }
 
 .celebrateText {
-  padding-left: 100px;
-  padding-right: 100px;
-  padding-bottom: 100px;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-bottom: 17px;
   text-align: center;
   color: #000000;
-  font-size: 24px;
+  font-size: 22px;
 }
 
 .wedding-shcedule {
-    padding-bottom: 10rem;
+    padding-bottom: 5rem;
   }
 
 .accept-delcine {
@@ -63,6 +61,12 @@
     margin-left: 10px;
 }
 
+.card-header{
+  /* border: 1px solid #000000; */
+}
+
+
+
 .card {
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
     0 10px 10px -5px rgba(0, 0, 0, 0.04);
@@ -71,12 +75,42 @@
   height: 100%;
 }
 
+
 .right-side {
   padding: 0%;
   overflow-y: auto;
   height: 100vh;
   background-color: #ffffff;
 }
+
+/* heart-line.component.css */
+.heart-line-container {
+  position: relative;
+  width: 100%;
+  text-align: center;
+}
+
+.heart-line {
+  border: 0;
+  width: 90%;
+  height: 1px;
+  background: #d3d3d3; /* Light gray for a softer look */
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.heart {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #000; /* Keep the heart icon black for contrast */
+  font-size: 16px; /* Adjusted size for the heart icon */
+  background: #fff; /* Ensures the background masks the line properly */
+  padding: 0 4px;
+}
+
 
 .right-side::-webkit-scrollbar-track {
   background-color: #ffffff;
@@ -119,6 +153,40 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   z-index: 10;
 }
+
+.form-container {
+  width: 70%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.flex-container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.flex-item {
+  flex: 1; /* This makes each item take up equal space */
+  margin: 0 10px; /* Adds some space between the items */
+}
+
+/* Adjust the first item's margin to remove space at the start */
+.flex-item:first-child {
+  margin-left: 0;
+}
+
+/* Adjust the last item's margin to remove space at the end */
+.flex-item:last-child {
+  margin-right: 0;
+}
+
+.w-full {
+  width: 100%;
+}
+
 
 @media (max-width: 768px) {
   .grid {

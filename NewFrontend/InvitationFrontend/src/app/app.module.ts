@@ -14,6 +14,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { MainpageComponent } from './mainpage/mainpage.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { MainpageComponent } from './mainpage/mainpage.component';
     MatInputModule,
     MatButtonModule,
     MatCardModule,
-    InputTextModule 
+    InputTextModule,
+    MatCheckboxModule 
   ],
   providers: [ApiService, HttpClient],
   bootstrap: [AppComponent]

@@ -2,56 +2,56 @@
 
 <div class="grid grid-main">
   <div class="col left-side">
-    <!-- Not sure i really like this -->
-    <!-- Might move this above "Mr & Mrs" picture -->
-    <!-- Left side image subject to change after potential photoshoot -->
     <div class="wedding-text">Michael & Shannon's Wedding</div>
   </div>
 
   <div class="col right-side scrollable-content">
-    <div style="padding: 15px" class="text-center">
-      <img class="MrAndMrsImage" src="assets/mrAndMrs.png" />
+    <div class="text-center">
+      <div class="card-header m-2">
+        <img class="MrAndMrsImage" src="assets/mrAndMrs.png" />
 
-      <div class="celebrateText">
-        <p>
-          We are overjoyed to announce that we are tying the knot and would be
-          honored to have you join us in celebrating our special day! As we
-          embark on this beautiful journey together, surrounded by our loved
-          ones, we cannot imagine it without you. You have been an important
-          part of our lives, and your presence on our wedding day would mean the
-          world to us. Your support, love, and friendship have enriched our
-          lives, and we would be delighted to share this unforgettable moment
-          with you.
-        </p>
+        <div class="celebrateText mt-3">
+          <p style="color: #575757; line-height: 25px;">
+            We are overjoyed to announce that we are tying the knot and would be
+            honored to have you join us in celebrating our special day! As we
+            embark on this beautiful journey together, surrounded by our loved
+            ones, we cannot imagine it without you. You have been an important
+            part of our lives, and your presence on our wedding day would mean the
+            world to us. Your support, love, and friendship have enriched our
+            lives, and we would be delighted to share this unforgettable moment
+            with you.
+          </p>
+        </div>
+      </div>
+
+      <div class="heart-line-container mb-5">
+        <hr class="heart-line">
+        <div class="heart"><i class="fas fa-heart"></i></div>
       </div>
 
       <h2>Shedule:</h2>
       <!-- Need to Fix this image size for Mobile somehow -->
       <img class="wedding-shcedule" src="assets/WeddingSchedule.png" />
-      
+
       <!-- Need to implement Google maps here with specified location -->
       <!-- Alternatively, have a screenshot of the location instead if its going to cost -->
 
-      <div class="accept-delcine">
+      <div class="heart-line-container mb-5">
+        <hr class="heart-line">
+        <div class="heart"><i class="fas fa-heart"></i></div>
+      </div>
+
+      <div class="accept-delcine p-3">
         <div class="wedding-accept-text">
           <h2>Will you be attending the wedding?</h2>
         </div>
         <div>
-          <button
-            class="acceptStyle"
-            mat-raised-button
-            color="basic"
-            type="submit"
-            (click)="handleAcceptClick()"
-          >
+          <button class="acceptStyle w-2" [ngStyle]="isAccepted? {'background-color': '#cbc2a3'}: undefined"
+            mat-raised-button color="basic" type="submit" (click)="handleAcceptClick()">
             Accept
           </button>
-          <button
-            mat-raised-button
-            color="basic"
-            type="submit"
-            (click)="handleDeclineClick()"
-          >
+          <button class="acceptStyle w-2" [ngStyle]="isDeclined? {'background-color': '#cbc2a3'}: undefined"
+            mat-raised-button color="basic" type="submit" (click)="handleDeclineClick()">
             Decline
           </button>
         </div>
@@ -59,64 +59,51 @@
 
       <div *ngIf="isClicked">
         <form [formGroup]="invitationForm" (ngSubmit)="onSubmit()">
-          <div class="grid fluid">
-            <div class="col">
-              <mat-form-field appearance="outline">
-                <mat-label>Email</mat-label>
-                <input matInput type="email" formControlName="email" />
-                <mat-error
-                  *ngIf="invitationForm.get('email')?.hasError('required')"
-                >
-                  Email is required
-                </mat-error>
-                <mat-error
-                  *ngIf="invitationForm.get('email')?.hasError('email')"
-                >
-                  Email not valid
-                </mat-error>
-              </mat-form-field>
-            </div>
+          <div class="form-container">
+            <div class="align-items-center">
+              <div>
+                <mat-form-field appearance="outline" class="w-full">
+                  <mat-label>Email</mat-label>
+                  <input matInput type="email" formControlName="email" />
+                  <mat-error *ngIf="invitationForm.get('email')?.hasError('required')">
+                    Email is required
+                  </mat-error>
+                  <mat-error *ngIf="invitationForm.get('email')?.hasError('email')">
+                    Email not valid
+                  </mat-error>
+                </mat-form-field>
+              </div>
 
-            <div class="col">
-              <mat-form-field appearance="outline">
-                <mat-label>First Name</mat-label>
-                <input matInput type="text" formControlName="firstName" />
-                <mat-error
-                  *ngIf="invitationForm.get('firstName')?.hasError('required')"
-                >
-                  First Name is required
-                </mat-error>
-              </mat-form-field>
-            </div>
+              <!-- New div with class for flex layout -->
+              <div class="flex-container">
+                <mat-form-field appearance="outline" class="w-full flex-item">
+                  <mat-label>First Name</mat-label>
+                  <input matInput type="text" formControlName="firstName" />
+                  <mat-error *ngIf="invitationForm.get('firstName')?.hasError('required')">
+                    First Name is required
+                  </mat-error>
+                </mat-form-field>
 
-            <div class="col">
-              <mat-form-field appearance="outline">
-                <mat-label>Last Name</mat-label>
-                <input matInput type="text" formControlName="lastName" />
-                <mat-error
-                  *ngIf="invitationForm.get('lastName')?.hasError('required')"
-                >
-                  Last Name is required
-                </mat-error>
-              </mat-form-field>
-            </div>
+                <mat-form-field appearance="outline" class="w-full flex-item">
+                  <mat-label>Last Name</mat-label>
+                  <input matInput type="text" formControlName="lastName" />
+                  <mat-error *ngIf="invitationForm.get('lastName')?.hasError('required')">
+                    Last Name is required
+                  </mat-error>
+                </mat-form-field>
+              </div>
 
-            <div *ngIf="isAccepted" class="col">
-              <mat-form-field appearance="outline">
-                <mat-label>Song Request</mat-label>
-                <input matInput type="text" formControlName="songRequest" />
-              </mat-form-field>
+              <div *ngIf="isAccepted">
+                <mat-form-field appearance="outline" class="w-full">
+                  <mat-label>Song Request</mat-label>
+                  <input matInput type="text" formControlName="songRequest" />
+                </mat-form-field>
+              </div>
             </div>
-
-            <div class="col">
-              <mat-checkbox formControlName="isAccepted"
-                >Is Accepted</mat-checkbox
-              >
-            </div>
+            <button mat-raised-button style="background-color: #cbc2a3;" type="submit" class="w-8 mb-4">RSVP</button>
           </div>
-
-          <button mat-raised-button color="basic" type="submit">RSPV</button>
         </form>
+
       </div>
     </div>
   </div>
