@@ -1,107 +1,144 @@
+@import url("https://fonts.cdnfonts.com/css/elegant-wedding");
+
 .scrollable-content {
-    overflow-y: auto;
-    height: 100%;
-    overflow-x: hidden !important;
+  overflow-y: auto;
+  height: 100%;
+  overflow-x: hidden !important;
 }
 
 .left-side {
-    padding: 0%;
-    background-size: cover;
-    border-right: 1.5px solid black;
-    background-image: url('https://images.unsplash.com/photo-1591604466107-ec97de577aff?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8d2VkZGluZyUyMGNvdXBsZXxlbnwwfHwwfHx8MA%3D%3D') ;
-    filter: hue-rotate(5deg);
+  padding: 0%;
+  background-size: cover;
+  border-right: 1.5px solid black;
+  background-image: url("/assets/mAndS1.jpg");
+  filter: hue-rotate(5deg);
 }
 
-.invitation-header {
-    font-family: 'Playfair Display', serif;
-    font-size: 32px; 
-    justify-content: center;
-    background-color: #fdf9f1; 
-    height: 7%; 
-    border: 0.5px solid black;
-    align-items: center;
-    display: flex;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+.wedding-text {
+  color: #a39a7c;
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  transform: translate(-50%, -50%);
+  font-family: "Elegant Wedding", sans-serif;
+  font-size: 80px;
+  text-shadow: 1px 1px #fff;
+}
+
+.MrAndMrsImage {
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+  background-size: cover;
+  filter: hue-rotate(5deg);
+}
+
+.celebrateText {
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-bottom: 100px;
+  text-align: center;
+  color: #000000;
+  font-size: 24px;
+}
+
+.wedding-shcedule {
+    padding-bottom: 10rem;
   }
 
+.accept-delcine {
+    min-height: 10rem;
+    padding-bottom: 100px;
+}
+
+.wedding-accept-text {
+    padding-bottom: 20px;
+}
+
+.acceptStyle {
+    margin-right: 10px;
+}
+
+.closeStyle {
+    top: 8px;
+    margin-left: 10px;
+}
+
 .card {
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-    background-color: #fff;
-    padding: 10px;
-    height: 100%;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  background-color: #fff;
+  padding: 10px;
+  height: 100%;
 }
 
 .right-side {
-    padding: 0%;
-    overflow-y: auto;
-    height: 100vh;
-    background-color: #ffbc99;
+  padding: 0%;
+  overflow-y: auto;
+  height: 100vh;
+  background-color: #ffffff;
 }
 
 .right-side::-webkit-scrollbar-track {
-    background-color: #f0e1d2;
-    border-radius: 10px;
-    box-shadow: inset 0 0 5px rgba(0,0,0,0.2);
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 .right-side::-webkit-scrollbar-thumb {
-    background-color: #b85c50;
-    border-radius: 10px;
-    border: 2px solid #d3a991; 
+  background-color: #ffffff;
+  border-radius: 10px;
+  border: 2px solid #000000;
 }
 
 .right-side::-webkit-scrollbar {
-    width: 10px;
+  width: 10px;
 }
 
 .grid-main {
-    height: 100vh !important;
-    max-height: 100vh;
-    margin: 0;
-    overflow: hidden;
+  height: 100vh !important;
+  max-height: 100vh;
+  margin: 0;
+  overflow: hidden;
 }
 
 .circle-card {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 100px; 
-    height: 100px;
-    background-color: #fff8eb; 
-    border-radius: 50%; 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 24px; 
-    color: black; 
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    z-index: 10; 
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  background-color: #cbc2a3;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: black;
+  font-family: "Elegant Wedding", sans-serif;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 10;
 }
 
 @media (max-width: 768px) {
-    .grid {
-        flex-direction: column;
-    }
+  .grid {
+    flex-direction: column;
+  }
 
-    .left-side {
-        max-height: 40vh;
-        overflow-y: hidden;
-    }
+  .left-side {
+    max-height: 40vh;
+    overflow-y: hidden;
+  }
 
-    .right-side {
-        height: 50vh;
-        overflow-y: auto;
-    }
+  .right-side {
+    height: 50vh;
+    overflow-y: auto;
+  }
 
-    .circle-card {
-        top: 47%;
-        width: 100px; 
-        height: 100px;
-        font-size: 20px;
-    }
-
-    .invitation-header{
-        font-size: 23px;
-    }
+  .circle-card {
+    top: 40%;
+    width: 100px;
+    height: 100px;
+    font-size: 24px;
+  }
 }

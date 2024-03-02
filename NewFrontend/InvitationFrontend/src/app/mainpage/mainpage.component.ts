@@ -9,6 +9,22 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 export class MainpageComponent {
   invitationForm: FormGroup = new FormGroup({});
 
+  isClicked: boolean = false;
+  isAccepted: boolean = false;
+  isDeclined: boolean = false;
+
+  handleAcceptClick() {
+    this.isClicked = true;
+    this.isAccepted = true;
+    this.isDeclined = false;
+  }
+
+  handleDeclineClick() {
+    this.isClicked = true;
+    this.isAccepted = false;
+    this.isDeclined = true;
+  }
+
   constructor(private _fb: FormBuilder) {
 
   }
