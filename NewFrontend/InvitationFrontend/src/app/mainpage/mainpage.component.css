@@ -41,6 +41,7 @@
 
 .wedding-shcedule {
     padding-bottom: 5rem;
+    width: 90%;
   }
 
 .accept-delcine {
@@ -194,6 +195,7 @@
   .right-side {
     height: 50vh;
     overflow-y: auto;
+    width: 100%;
   }
 
   .circle-card {

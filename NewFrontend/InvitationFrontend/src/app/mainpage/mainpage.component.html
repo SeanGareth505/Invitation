@@ -60,7 +60,7 @@
       <div *ngIf="isClicked">
         <form [formGroup]="invitationForm" (ngSubmit)="onSubmit()">
           <div class="form-container">
-            <div class="align-items-center">
+            <div class="align-items-center w-full">
               <div>
                 <mat-form-field appearance="outline" class="w-full">
                   <mat-label>Email</mat-label>
@@ -74,7 +74,6 @@
                 </mat-form-field>
               </div>
 
-              <!-- New div with class for flex layout -->
               <div class="flex-container">
                 <mat-form-field appearance="outline" class="w-full flex-item">
                   <mat-label>First Name</mat-label>
