@@ -28,6 +28,7 @@
 .MrAndMrsImage {
   filter: hue-rotate(5deg);
   padding: 0px !important;
+  margin-top: 20px;
 }
 
 .celebrateText {
