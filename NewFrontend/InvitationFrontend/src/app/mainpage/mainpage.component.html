@@ -1,20 +1,23 @@
 <body>
-  <div class="circle-card">27th April 24</div>
-
+  <div class="circle-card">27th April 2024</div>
   <div class="grid grid-main">
     <div class="col left-side">
-      <div class="wedding-text">Michael & Shannon's Wedding</div>
     </div>
 
     <div class="col right-side scrollable-content">
       <div class="text-center">
         <div class="card-header m-2">
+          <div class="wedding-text">
+            <div class="padding-bottom">Michael & </div>
+            <div class="padding-bottom">Shannon's</div>
+            <div>Wedding</div>
+          </div>
           <img class="MrAndMrsImage" src="assets/mrAndMrs.png" />
 
           <div class="celebrateText mt-3">
             <p style="color: #575757; line-height: 25px;">
               We are overjoyed to announce that we are tying the knot and would be
-              honored to have you join us in celebrating our special day! As we
+              honoured to have you join us in celebrating our special day! As we
               embark on this beautiful journey together, surrounded by our loved
               ones, we cannot imagine it without you. You have been an important
               part of our lives, and your presence on our wedding day would mean the
@@ -30,8 +33,12 @@
           <div class="heart"><i class="fas fa-heart"></i></div>
         </div>
 
-        <h2>Shedule:</h2>
-        <img class="wedding-shcedule" src="assets/WeddingSchedule.png" />
+        <h1>Schedule:</h1>
+        <img class="wedding-shcedule" src="assets/WeddingSchedule.jpeg" />
+
+        <h1>Location:</h1>
+        <img class="wedding-shcedule" src="assets/weddingVenueMap.png" />
+        <div>Accommodation available @ Plaas Kombuis - 016 364 4144 / 082 742 1128</div>
 
         <div class="heart-line-container mb-5">
           <hr class="heart-line">
@@ -42,6 +49,7 @@
           <div class="wedding-accept-text">
             <h2>Will you be attending the wedding?</h2>
           </div>
+          <div class="wedding-accept-text">Please RSVP by the 31st of March 2024</div>
           <div>
             <button class="acceptStyle w-2" [ngStyle]="isAccepted? {'background-color': '#cbc2a3'}: undefined"
               mat-raised-button color="basic" type="submit" (click)="handleAcceptClick()">
@@ -92,10 +100,18 @@
                 <div *ngIf="isAccepted">
                   <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Song Request</mat-label>
-                    <input matInput type="text" formControlName="songRequest" />
+                    <input matInput type="text" formControlName="songRequest" placeholder="Artist - Song Name" />
                   </mat-form-field>
                 </div>
               </div>
+
+              <div *ngIf="isAccepted" class="monetary-text">
+                <div>With all that we have. We've been truly blessed.</div>
+                <div>Your presence and prayers are all that we request</div>
+                <div>But if you desire to give nonetheless.</div>
+                <div>Monetary gift is one we suggest.</div>
+              </div>
+
               <button mat-raised-button style="background-color: #cbc2a3;" type="submit"
                 class="w-8 mb-4 mt-2">RSVP</button>
             </div>
