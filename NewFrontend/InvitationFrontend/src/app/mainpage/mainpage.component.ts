@@ -44,6 +44,10 @@ export class MainpageComponent {
     });
   }
 
+  resetFields() {
+    this.invitationForm.reset();
+  }
+
   onSubmit() {
     if (this.invitationForm.valid) {
       let submitData: SubmitRSVPInputDTO = {
@@ -53,10 +57,16 @@ export class MainpageComponent {
         songRequest: this.invitationForm.get('songRequest')?.value,
         isAccepted: this.isAccepted 
       };
-      console.log('submitData', submitData)
   
-      this._apiService.submitRSVP(submitData).subscribe(result => {
-        this._messageService.add({severity:'success', summary:'RSVP Submitted', detail:'RSVP Submitted Successfully'});
+      this._apiService.submitRSVP(submitData).subscribe({
+        next: (result) => {
+          this._messageService.add({ severity: 'success', summary: 'RSVP Submitted', detail: 'RSVP Submitted Successfully' });
+          this.resetFields();
+        },
+        error: (error) => {
+          console.error('Error submitting RSVP:', error);
+          this._messageService.add({severity:'error', summary:'Submission Error', detail:'Could not submit RSVP. Please try again later or contact Michael.'});
+        }
       });
     }
   }

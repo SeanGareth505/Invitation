@@ -38,11 +38,19 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
+// Automatically apply migrations
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    dbContext.Database.Migrate(); // This line applies the migration
+}
+
 // Configure the HTTP request pipeline
+app.UseSwagger();
+app.UseSwaggerUI();
 if (isDevelopment)
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    // Development-specific middleware can go here
 }
 
 app.UseHttpsRedirection();
