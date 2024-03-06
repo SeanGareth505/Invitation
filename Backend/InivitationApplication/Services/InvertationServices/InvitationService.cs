@@ -30,20 +30,19 @@ namespace InivitationApplication.Services.InvertationServices
             return await allInvitations.ToListAsync();
         }
 
-        public async Task AddRandomText(string text)
+        public async Task SubmitRSVP(SubmitRSVPInputDTO input)
         {
-            var inv = new InvitationModel()
+            var objectToSave = new InvitationModel()
             {
-                Id = Guid.NewGuid(),
-                Email = text,
-                FirstName = text,
-                LastName = text,
-                SongRequest = text,
-                IsAccepted = true,
+                Email = input.Email,
+                FirstName = input.FirstName,
+                LastName = input.LastName,
+                SongRequest = input.SongRequest,
+                IsAccepted = input.IsAccepted,
             };
 
-            _context.Invitations.Add(inv);
-            _context.SaveChanges();
+            await _context.Invitations.AddAsync(objectToSave);
+            await _context.SaveChangesAsync();
         }
     }
 }

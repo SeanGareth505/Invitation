@@ -32,24 +32,16 @@ namespace InivitationApplication.Controllers
             }
         }
 
-        [HttpPost("test")]
-        public async Task<IActionResult> test([FromBody] testDto randomText)
+        [HttpPost("SubmitRSVP")]
+        public async Task<IActionResult> SubmitRSVP([FromBody] SubmitRSVPInputDTO input)
         {
-
             try
             {
-                if (string.IsNullOrWhiteSpace(randomText.RandomText))
-                {
-                    return BadRequest("Invalid request payload");
-                }
-
-                await _invitationService.AddRandomText(randomText.RandomText);
+                await _invitationService.SubmitRSVP(input);
                 return Ok();
             }
             catch (Exception ex)
             {
-                // Log the exception details for debugging
-                // Consider returning a more specific error message depending on the exception
                 return StatusCode(500, "Internal server error");
             }
         }

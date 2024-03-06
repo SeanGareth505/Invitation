@@ -173,15 +173,9 @@
   margin-left: 0;
 }
 
-/* Adjust the last item's margin to remove space at the end */
-.flex-item:last-child {
-  margin-right: 0;
-}
-
 .w-full {
   width: 100%;
 }
-
 
 @media (max-width: 768px) {
   .grid {

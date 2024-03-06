@@ -15,6 +15,9 @@ import { MatCardModule } from '@angular/material/card';
 import { InputTextModule } from 'primeng/inputtext';
 import { MainpageComponent } from './mainpage/mainpage.component';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [
@@ -35,9 +38,11 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
     MatButtonModule,
     MatCardModule,
     InputTextModule,
-    MatCheckboxModule 
+    MatCheckboxModule,
+    MatSnackBarModule,
+    ToastModule 
   ],
-  providers: [ApiService, HttpClient],
+  providers: [ApiService, HttpClient, MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

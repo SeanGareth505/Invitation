@@ -1,10 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ApiService } from '../services/api.service';
+import { SubmitRSVPInputDTO } from '../Interfaces/InvitationInterfaces';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-mainpage',
   templateUrl: './mainpage.component.html',
-  styleUrls: ['./mainpage.component.css']
+  styleUrls: ['./mainpage.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class MainpageComponent {
   invitationForm: FormGroup = new FormGroup({});
@@ -25,7 +30,7 @@ export class MainpageComponent {
     this.isDeclined = true;
   }
 
-  constructor(private _fb: FormBuilder) {
+  constructor(private _fb: FormBuilder, private _apiService: ApiService, private snackBar: MatSnackBar, private _messageService: MessageService) {
 
   }
 
@@ -40,6 +45,19 @@ export class MainpageComponent {
   }
 
   onSubmit() {
-    
+    if (this.invitationForm.valid) {
+      let submitData: SubmitRSVPInputDTO = {
+        email: this.invitationForm.get('email')?.value,
+        firstName: this.invitationForm.get('firstName')?.value,
+        lastName: this.invitationForm.get('lastName')?.value,
+        songRequest: this.invitationForm.get('songRequest')?.value,
+        isAccepted: this.isAccepted 
+      };
+      console.log('submitData', submitData)
+  
+      this._apiService.submitRSVP(submitData).subscribe(result => {
+        this._messageService.add({severity:'success', summary:'RSVP Submitted', detail:'RSVP Submitted Successfully'});
+      });
+    }
   }
 }

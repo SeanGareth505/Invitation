@@ -50,9 +50,6 @@ export class TestComponent {
   
   
   test() {
-    this._apiService.testInvitation(this.value).subscribe({
-      next: (response) => console.log('Test invitation sent successfully', response),
-      error: (error) => console.error('Error sending test invitation', error)
-    });
+
   }
 }
