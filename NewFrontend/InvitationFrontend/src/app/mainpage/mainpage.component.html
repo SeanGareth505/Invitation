@@ -8,8 +8,7 @@
       <div class="text-center">
         <div class="card-header m-2">
           <div class="wedding-text">
-            <div class="padding-bottom">Michael & </div>
-            <div class="padding-bottom">Shannon's</div>
+            <div>Michael & Shannon's</div>
             <div>Wedding</div>
           </div>
           <img class="MrAndMrsImage" src="assets/mrAndMrs.png" />
@@ -70,12 +69,12 @@
                   <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Email</mat-label>
                     <input matInput type="email" formControlName="email" />
-                    <mat-error *ngIf="invitationForm.get('email')?.hasError('required')">
+                    <mat-error *ngIf="invitationForm.get('email')?.hasError('required') && invitationForm.get('email')?.touched">
                       Email is required
                     </mat-error>
-                    <mat-error *ngIf="invitationForm.get('email')?.hasError('email')">
+                    <!-- <mat-error *ngIf="invitationForm.get('email')?.hasError('email')">
                       Email not valid
-                    </mat-error>
+                    </mat-error> -->
                   </mat-form-field>
                 </div>
 

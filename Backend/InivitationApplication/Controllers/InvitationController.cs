@@ -32,6 +32,21 @@ namespace InivitationApplication.Controllers
             }
         }
 
+        [HttpGet("CheckEmailExists/{email}")]
+        public async Task<IActionResult> CheckEmailExists(string email)
+        {
+            try
+            {
+                var invitations = await _invitationService.CheckEmailExists(email.Trim());
+                return Ok(invitations);
+            }
+            catch (Exception ex)
+            {
+                // Handle exceptions and return an error response if necessary
+                return StatusCode(500, "Internal server error");
+            }
+        }
+
         [HttpPost("SubmitRSVP")]
         public async Task<IActionResult> SubmitRSVP([FromBody] SubmitRSVPInputDTO input)
         {

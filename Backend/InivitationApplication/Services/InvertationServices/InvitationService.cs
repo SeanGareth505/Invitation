@@ -14,6 +14,13 @@ namespace InivitationApplication.Services.InvertationServices
             _context = context;
         }
 
+        public async Task<bool> CheckEmailExists(string email)
+        {
+            var checkExists = await _context.Invitations.FirstOrDefaultAsync(x => x.Email == email) != null;
+
+            return checkExists;
+        }
+
         public async Task<IEnumerable<GetAllInvitationsOutputDTO>> GetAllInvitations()
         {
             var allInvitations = _context.Invitations

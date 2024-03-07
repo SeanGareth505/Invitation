@@ -16,8 +16,12 @@ export class ApiService {
     return this.http.get<GetAllInvitationsOutputDTO[]>(`${this.baseUrl}/invitation`);
   }
 
+  doesEmailExist(email: string): Observable<boolean> {
+    console.log('email', email)
+    return this.http.get<boolean>(`${this.baseUrl}/Invitation/CheckEmailExists/${email}`);
+  }
+
   submitRSVP(randomText: SubmitRSVPInputDTO): Observable<any> {
-    // const body = JSON.stringify({ input: randomText });
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
     return this.http.post(`${this.baseUrl}/Invitation/SubmitRSVP`, randomText, { headers });

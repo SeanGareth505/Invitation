@@ -35,6 +35,10 @@ export class MainpageComponent {
   }
 
   ngOnInit(): void {
+    this.resetForm();
+  }
+
+  resetForm() {
     this.invitationForm = this._fb.group({
       email: ['', [Validators.required, Validators.email]],
       firstName: ['', Validators.required],
@@ -44,30 +48,42 @@ export class MainpageComponent {
     });
   }
 
-  resetFields() {
-    this.invitationForm.reset();
-  }
-
   onSubmit() {
-    if (this.invitationForm.valid) {
-      let submitData: SubmitRSVPInputDTO = {
-        email: this.invitationForm.get('email')?.value,
-        firstName: this.invitationForm.get('firstName')?.value,
-        lastName: this.invitationForm.get('lastName')?.value,
-        songRequest: this.invitationForm.get('songRequest')?.value,
-        isAccepted: this.isAccepted 
-      };
-  
-      this._apiService.submitRSVP(submitData).subscribe({
-        next: (result) => {
-          this._messageService.add({ severity: 'success', summary: 'RSVP Submitted', detail: 'RSVP Submitted Successfully' });
-          this.resetFields();
-        },
-        error: (error) => {
-          console.error('Error submitting RSVP:', error);
-          this._messageService.add({severity:'error', summary:'Submission Error', detail:'Could not submit RSVP. Please try again later or contact Michael.'});
+    console.log('this._apiService.doesEmailExist(this.invitationForm.get(\'email\')?.value)', this._apiService.doesEmailExist(this.invitationForm.get('email')?.value))
+    !this._apiService.doesEmailExist(this.invitationForm.get('email')?.value).subscribe({
+      next: (doesExist) => {
+        if (!doesExist) {
+          if (this.invitationForm.valid) {
+            let submitData: SubmitRSVPInputDTO = {
+              email: this.invitationForm.get('email')?.value,
+              firstName: this.invitationForm.get('firstName')?.value,
+              lastName: this.invitationForm.get('lastName')?.value,
+              songRequest: this.invitationForm.get('songRequest')?.value,
+              isAccepted: this.isAccepted
+            };
+
+            this._apiService.submitRSVP(submitData).subscribe({
+              next: (result) => {
+                this._messageService.add({ severity: 'success', summary: 'RSVP Submitted', detail: 'RSVP Submitted Successfully' });
+                this.isClicked = false;
+                this.resetForm();
+              },
+              error: (error) => {
+                console.error('Error submitting RSVP:', error);
+                this._messageService.add({ severity: 'error', summary: 'Submission Error', detail: 'Could not submit RSVP. Please try again later or contact Michael.' });
+              }
+            });
+          }
+        } else {
+          this._messageService.add({
+            severity: 'error',
+            summary: 'RSVP has already been submitted for this email',
+            detail: 'RSVP has already been submitted for this email, if you want to resubmit please contact Michael.',
+            life: 10000
+          });
+
         }
-      });
-    }
+      }
+    })
   }
 }
