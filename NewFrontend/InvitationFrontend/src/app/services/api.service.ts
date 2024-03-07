@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment.prod';
-import { SubmitRSVPInputDTO } from '../Interfaces/InvitationInterfaces';
+import { GetAllInvitationsOutputDTO, SubmitRSVPInputDTO } from '../Interfaces/InvitationInterfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,8 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  getInvitations(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/invitations`);
+  getInvitations(): Observable<GetAllInvitationsOutputDTO[]> {
+    return this.http.get<GetAllInvitationsOutputDTO[]>(`${this.baseUrl}/invitation`);
   }
 
   submitRSVP(randomText: SubmitRSVPInputDTO): Observable<any> {

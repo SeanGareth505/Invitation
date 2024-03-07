@@ -18,12 +18,16 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
+import { AdminComponent } from './admin/admin.component';
+import { TableModule } from 'primeng/table';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 @NgModule({
   declarations: [
     AppComponent,
     TestComponent,
-    MainpageComponent
+    MainpageComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,9 @@ import { MessageService } from 'primeng/api';
     InputTextModule,
     MatCheckboxModule,
     MatSnackBarModule,
-    ToastModule 
+    ToastModule,
+    TableModule,
+    MultiSelectModule
   ],
   providers: [ApiService, HttpClient, MessageService],
   bootstrap: [AppComponent]
