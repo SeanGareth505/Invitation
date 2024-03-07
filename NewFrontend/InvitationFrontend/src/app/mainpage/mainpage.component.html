@@ -1,8 +1,7 @@
 <body>
   <div class="circle-card">27th April 2024</div>
   <div class="grid grid-main">
-    <div class="col left-side">
-    </div>
+    <div class="col left-side"></div>
 
     <div class="col right-side scrollable-content">
       <div class="text-center">
@@ -14,21 +13,21 @@
           <img class="MrAndMrsImage" src="assets/mrAndMrs.png" />
 
           <div class="celebrateText mt-3">
-            <p style="color: #575757; line-height: 25px;">
-              We are overjoyed to announce that we are tying the knot and would be
-              honoured to have you join us in celebrating our special day! As we
-              embark on this beautiful journey together, surrounded by our loved
-              ones, we cannot imagine it without you. You have been an important
-              part of our lives, and your presence on our wedding day would mean the
-              world to us. Your support, love, and friendship have enriched our
-              lives, and we would be delighted to share this unforgettable moment
-              with you.
+            <p style="color: #575757; line-height: 25px">
+              We are overjoyed to announce that we are tying the knot and would
+              be honoured to have you join us in celebrating our special day! As
+              we embark on this beautiful journey together, surrounded by our
+              loved ones, we cannot imagine it without you. You have been an
+              important part of our lives, and your presence on our wedding day
+              would mean the world to us. Your support, love, and friendship
+              have enriched our lives, and we would be delighted to share this
+              unforgettable moment with you.
             </p>
           </div>
         </div>
 
         <div class="heart-line-container mb-5">
-          <hr class="heart-line">
+          <hr class="heart-line" />
           <div class="heart"><i class="fas fa-heart"></i></div>
         </div>
 
@@ -37,10 +36,17 @@
 
         <h1>Location:</h1>
         <img class="wedding-shcedule" src="assets/weddingVenueMap.png" />
-        <div>Accommodation available @ Plaas Kombuis - 016 364 4144 / 082 742 1128</div>
+
+        <h1>Location Details:</h1>
+        <h3>Venue Location:</h3>
+        <div>Langenhoven Rd, Sherman Park AH, Meyerton, 1961</div>
+        <a href="https://maps.app.goo.gl/ZsugyyGFGUaVGWaD9" target="_blank">Click here for Map Location</a>
+        <div class="pb-5"></div>
+        <h3>Accommodation:</h3>
+        <div>Available @ Plaas Kombuis - 016 364 4144 / 082 742 1128</div>
 
         <div class="heart-line-container mb-5">
-          <hr class="heart-line">
+          <hr class="heart-line" />
           <div class="heart"><i class="fas fa-heart"></i></div>
         </div>
 
@@ -48,14 +54,32 @@
           <div class="wedding-accept-text">
             <h2>Will you be attending the wedding?</h2>
           </div>
-          <div class="wedding-accept-text">Please RSVP by the 31st of March 2024</div>
+          <div class="wedding-accept-text">
+            Please RSVP by the 31st of March 2024
+          </div>
           <div>
-            <button class="acceptStyle w-2" [ngStyle]="isAccepted? {'background-color': '#cbc2a3'}: undefined"
-              mat-raised-button color="basic" type="submit" (click)="handleAcceptClick()">
+            <button
+              class="acceptStyle w-2"
+              [ngStyle]="
+                isAccepted ? { 'background-color': '#cbc2a3' } : undefined
+              "
+              mat-raised-button
+              color="basic"
+              type="submit"
+              (click)="handleAcceptClick()"
+            >
               Accept
             </button>
-            <button class="acceptStyle w-2" [ngStyle]="isDeclined? {'background-color': '#cbc2a3'}: undefined"
-              mat-raised-button color="basic" type="submit" (click)="handleDeclineClick()">
+            <button
+              class="acceptStyle w-2"
+              [ngStyle]="
+                isDeclined ? { 'background-color': '#cbc2a3' } : undefined
+              "
+              mat-raised-button
+              color="basic"
+              type="submit"
+              (click)="handleDeclineClick()"
+            >
               Decline
             </button>
           </div>
@@ -69,7 +93,12 @@
                   <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Email</mat-label>
                     <input matInput type="email" formControlName="email" />
-                    <mat-error *ngIf="invitationForm.get('email')?.hasError('required') && invitationForm.get('email')?.touched">
+                    <mat-error
+                      *ngIf="
+                        invitationForm.get('email')?.hasError('required') &&
+                        invitationForm.get('email')?.touched
+                      "
+                    >
                       Email is required
                     </mat-error>
                     <!-- <mat-error *ngIf="invitationForm.get('email')?.hasError('email')">
@@ -82,7 +111,11 @@
                   <mat-form-field appearance="outline" class="w-full flex-item">
                     <mat-label>First Name</mat-label>
                     <input matInput type="text" formControlName="firstName" />
-                    <mat-error *ngIf="invitationForm.get('firstName')?.hasError('required')">
+                    <mat-error
+                      *ngIf="
+                        invitationForm.get('firstName')?.hasError('required')
+                      "
+                    >
                       First Name is required
                     </mat-error>
                   </mat-form-field>
@@ -90,7 +123,11 @@
                   <mat-form-field appearance="outline" class="w-full flex-item">
                     <mat-label>Last Name</mat-label>
                     <input matInput type="text" formControlName="lastName" />
-                    <mat-error *ngIf="invitationForm.get('lastName')?.hasError('required')">
+                    <mat-error
+                      *ngIf="
+                        invitationForm.get('lastName')?.hasError('required')
+                      "
+                    >
                       Last Name is required
                     </mat-error>
                   </mat-form-field>
@@ -99,7 +136,12 @@
                 <div *ngIf="isAccepted">
                   <mat-form-field appearance="outline" class="w-full">
                     <mat-label>Song Request</mat-label>
-                    <input matInput type="text" formControlName="songRequest" placeholder="Artist - Song Name" />
+                    <input
+                      matInput
+                      type="text"
+                      formControlName="songRequest"
+                      placeholder="Artist - Song Name"
+                    />
                   </mat-form-field>
                 </div>
               </div>
@@ -111,15 +153,20 @@
                 <div>Monetary gift is one we suggest.</div>
               </div>
 
-              <button mat-raised-button style="background-color: #cbc2a3;" type="submit"
-                class="w-8 mb-4 mt-2">RSVP</button>
+              <button
+                mat-raised-button
+                style="background-color: #cbc2a3"
+                type="submit"
+                class="w-8 mb-4 mt-2"
+              >
+                RSVP
+              </button>
             </div>
           </form>
-
         </div>
       </div>
       <!-- Buffer zone. When accessing on phone, buttons didnt display -->
-      <div style="padding-bottom: 75px;"></div>
+      <div style="padding-bottom: 75px"></div>
     </div>
   </div>
 </body>
