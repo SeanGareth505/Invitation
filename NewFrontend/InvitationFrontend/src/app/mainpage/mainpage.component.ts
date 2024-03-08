@@ -17,6 +17,7 @@ export class MainpageComponent {
   isClicked: boolean = false;
   isAccepted: boolean = false;
   isDeclined: boolean = false;
+  isLoading: boolean = false;
 
   handleAcceptClick() {
     this.isClicked = true;
@@ -49,6 +50,7 @@ export class MainpageComponent {
   }
 
   onSubmit() {
+    this.isLoading = true;
     this._apiService.doesEmailExist(this.invitationForm.get('email')?.value).subscribe({
       next: (doesExist) => {
         if (!doesExist) {
@@ -60,9 +62,10 @@ export class MainpageComponent {
               songRequest: this.invitationForm.get('songRequest')?.value,
               isAccepted: this.isAccepted
             };
-
+  
             this._apiService.submitRSVP(submitData).subscribe({
               next: (result) => {
+                this.isLoading = false;
                 this._messageService.add({ severity: 'success', summary: 'RSVP Submitted', detail: 'RSVP Submitted Successfully' });
                 this.isClicked = false;
                 this.isAccepted = false;
@@ -70,21 +73,40 @@ export class MainpageComponent {
                 this.resetForm();
               },
               error: (error) => {
+                this.isLoading = false;
                 console.error('Error submitting RSVP:', error);
-                this._messageService.add({ severity: 'error', summary: 'Submission Error', detail: 'Could not submit RSVP. Please try again later or contact Michael.' });
+                this._messageService.add({
+                  severity: 'error',
+                  summary: 'Submission Error',
+                  detail: 'Could not submit RSVP. Please try again later or contact Michael.',
+                  life: 10000
+                });
               }
             });
+          } else {
+            this.isLoading = false;
           }
         } else {
+          this.isLoading = false;
           this._messageService.add({
             severity: 'error',
             summary: 'RSVP has already been submitted for this email',
             detail: 'RSVP has already been submitted for this email, if you want to resubmit please contact Michael.',
             life: 10000
           });
-
         }
+      },
+      error: (error) => {
+        this.isLoading = false;
+        console.error('Error checking email:', error);
+        this._messageService.add({
+          severity: 'error',
+          summary: 'Submission Error',
+          detail: 'Could not submit RSVP. Please try again later or contact Michael.',
+          life: 10000
+        });
       }
-    })
+    });
   }
+  
 }

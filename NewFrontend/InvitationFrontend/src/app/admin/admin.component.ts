@@ -4,7 +4,6 @@ import { GetAllInvitationsOutputDTO } from '../Interfaces/InvitationInterfaces';
 
 interface EmailOption {
   email: string;
-  id: string;
 }
 
 
@@ -25,7 +24,7 @@ export class AdminComponent {
   ngOnInit(): void {
     this._apiService.getInvitations().subscribe((data) => {
       this.invites = data;
-      this.emailOptions = data.map(x => ({ email: x.email, id: x.id }));
+      this.emailOptions = data.map(x => ({ email: x.email}));
       console.log('data', data)
 
     })

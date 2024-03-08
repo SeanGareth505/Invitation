@@ -21,6 +21,7 @@ import { MessageService } from 'primeng/api';
 import { AdminComponent } from './admin/admin.component';
 import { TableModule } from 'primeng/table';
 import { MultiSelectModule } from 'primeng/multiselect';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { MultiSelectModule } from 'primeng/multiselect';
     MatSnackBarModule,
     ToastModule,
     TableModule,
-    MultiSelectModule
+    MultiSelectModule,
+    MatProgressSpinnerModule
   ],
   providers: [ApiService, HttpClient, MessageService],
   bootstrap: [AppComponent]
