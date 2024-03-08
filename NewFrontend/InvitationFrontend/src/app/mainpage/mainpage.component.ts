@@ -49,8 +49,7 @@ export class MainpageComponent {
   }
 
   onSubmit() {
-    console.log('this._apiService.doesEmailExist(this.invitationForm.get(\'email\')?.value)', this._apiService.doesEmailExist(this.invitationForm.get('email')?.value))
-    !this._apiService.doesEmailExist(this.invitationForm.get('email')?.value).subscribe({
+    this._apiService.doesEmailExist(this.invitationForm.get('email')?.value).subscribe({
       next: (doesExist) => {
         if (!doesExist) {
           if (this.invitationForm.valid) {
@@ -66,6 +65,8 @@ export class MainpageComponent {
               next: (result) => {
                 this._messageService.add({ severity: 'success', summary: 'RSVP Submitted', detail: 'RSVP Submitted Successfully' });
                 this.isClicked = false;
+                this.isAccepted = false;
+                this.isDeclined = false;
                 this.resetForm();
               },
               error: (error) => {

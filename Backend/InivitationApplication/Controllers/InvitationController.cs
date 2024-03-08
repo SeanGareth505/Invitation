@@ -10,10 +10,12 @@ namespace InivitationApplication.Controllers
     public class InvitationController : ControllerBase
     {
         private readonly IInvitationService _invitationService;
+        private readonly ILogger<InvitationController> _logger;
 
-        public InvitationController(IInvitationService invitationService)
+        public InvitationController(IInvitationService invitationService, ILogger<InvitationController> logger)
         {
             _invitationService = invitationService;
+            _logger = logger;
         }
 
 
@@ -27,7 +29,7 @@ namespace InivitationApplication.Controllers
             }
             catch (Exception ex)
             {
-                // Handle exceptions and return an error response if necessary
+                _logger.LogError(ex, "An error occurred while fetching all invitations.");
                 return StatusCode(500, "Internal server error");
             }
         }
@@ -37,12 +39,12 @@ namespace InivitationApplication.Controllers
         {
             try
             {
-                var invitations = await _invitationService.CheckEmailExists(email.Trim());
-                return Ok(invitations);
+                var exists = await _invitationService.CheckEmailExists(email.Trim());
+                return Ok(exists);
             }
             catch (Exception ex)
             {
-                // Handle exceptions and return an error response if necessary
+                _logger.LogError(ex, "An error occurred while checking if email exists: {Email}", email);
                 return StatusCode(500, "Internal server error");
             }
         }
@@ -57,6 +59,7 @@ namespace InivitationApplication.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError(ex, "An error occurred while submitting RSVP for {Email}", input.Email);
                 return StatusCode(500, "Internal server error");
             }
         }

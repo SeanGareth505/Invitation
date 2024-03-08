@@ -5,6 +5,7 @@ namespace InivitationApplication.Models
     public class ApplicationDbContext : DbContext
     {
         public DbSet<InvitationModel> Invitations { get; set; }
+        public DbSet<LogEntry> LogEntries { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)

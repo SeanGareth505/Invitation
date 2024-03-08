@@ -1,4 +1,6 @@
-﻿namespace InivitationApplication.DTOs
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace InivitationApplication.DTOs
 {
     public class SubmitRSVPInputDTO
     {
