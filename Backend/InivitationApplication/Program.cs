@@ -1,15 +1,14 @@
-using InivitationApplication.Models;
-using InivitationApplication.Services.Interfaces;
-using InivitationApplication.Services.InvertationServices;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Net;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using InivitationApplication.Models;
+using InivitationApplication.Services.Interfaces;
+using InivitationApplication.Services.InvertationServices;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,7 +24,17 @@ builder.Configuration.AddJsonFile(appSettingsFile, optional: true, reloadOnChang
 // Configure your DbContext with the appropriate connection string based on the environment
 var connectionStringName = isDevelopment ? "DefaultConnection" : "ProductionConnection";
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString(connectionStringName)));
+{
+    options.UseSqlServer(builder.Configuration.GetConnectionString(connectionStringName),
+        sqlServerOptions =>
+        {
+            // Adjust connection pool settings
+            sqlServerOptions.EnableRetryOnFailure();
+            sqlServerOptions.MaxBatchSize(100);
+            sqlServerOptions.MinBatchSize(10);
+            sqlServerOptions.CommandTimeout(30); // Command timeout in seconds
+        });
+});
 
 // Add services to the container
 builder.Services.AddControllers();
@@ -48,7 +57,6 @@ builder.Services.AddCors(options =>
 Func<LogEntry, bool> filter = logEntry => logEntry.LogLevel == "Error";
 
 // Register DbLoggerProvider as a logging provider
-// Register DbLoggerProvider as a logging provider
 builder.Services.AddLogging(builder =>
 {
     builder.ClearProviders();
@@ -56,14 +64,7 @@ builder.Services.AddLogging(builder =>
     builder.AddProvider(new DbLoggerProvider(filter, serviceProvider.GetRequiredService<ApplicationDbContext>()));
 });
 
-
 var app = builder.Build();
-
-//using (var scope = app.Services.CreateScope())
-//{
-//    var dbContext = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-//    dbContext.Database.Migrate();
-//}
 
 // Configure global exception handling
 if (isDevelopment)
