@@ -16,18 +16,17 @@ export class AdminComponent {
   invites: GetAllInvitationsOutputDTO[] = [];
   loading: boolean = false;
   emailOptions: EmailOption[] = [];
-  
+
   @ViewChild('dt2') dt2: any;
 
-  constructor(private _apiService: ApiService) { }
-
-  ngOnInit(): void {
+  constructor(private _apiService: ApiService) {
     this._apiService.getInvitations().subscribe((data) => {
       this.invites = data;
-      this.emailOptions = data.map(x => ({ email: x.email}));
-      console.log('data', data)
-
+      this.emailOptions = data.map(x => ({ email: x.email }));
     })
+  }
+
+  ngOnInit(): void {
   }
 
   filterGlobal(event: Event) {
