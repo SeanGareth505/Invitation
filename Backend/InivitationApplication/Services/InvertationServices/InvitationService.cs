@@ -24,6 +24,7 @@ namespace InivitationApplication.Services.InvertationServices
         public async Task<IEnumerable<GetAllInvitationsOutputDTO>> GetAllInvitations()
         {
             var allInvitations = _context.Invitations
+                .AsNoTracking()
                 .Select(i => new GetAllInvitationsOutputDTO()
                 {
                     Id = i.Id,
