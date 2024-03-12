@@ -6,13 +6,19 @@ export interface SubmitRSVPInputDTO {
     isAccepted: boolean;
 }
 
-export interface GetAllInvitationsOutputDTO {
-    id: string; // Guids are typically represented as strings in TypeScript
+export interface Invitation {
+    id: string;
     email: string;
     firstName: string;
     lastName: string;
-    songRequest?: string; // The question mark indicates that this field is optional
+    songRequest?: string | null;
     isAccepted: boolean;
 }
+
+export interface GetAllInvitationsOutputDTO {
+    invitations: Invitation[] | null;
+    totalRecords: number;
+}
+
 
   

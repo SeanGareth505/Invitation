@@ -2,7 +2,7 @@
 
 namespace InivitationApplication.DTOs
 {
-    public class GetAllInvitationsOutputDTO
+    public class Invitations
     {
         public Guid Id { get; set; }
         public string Email { get; set; }
@@ -10,5 +10,11 @@ namespace InivitationApplication.DTOs
         public string LastName { get; set; }
         public string? SongRequest { get; set; }
         public bool IsAccepted { get; set; }
+    }
+
+    public class GetAllInvitationsOutputDTO
+    {
+        public List<Invitations>? Invitations { get; set; }
+        public int TotalRecords { get; set; }
     }
 }

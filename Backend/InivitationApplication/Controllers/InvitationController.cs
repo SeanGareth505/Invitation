@@ -20,11 +20,11 @@ namespace InivitationApplication.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> GetAllInvitations()
+        public async Task<IActionResult> GetAllInvitations(int skip = 0, int take = 10)
         {
             try
             {
-                var invitations = await _invitationService.GetAllInvitations();
+                var invitations = await _invitationService.GetAllInvitations(skip, take);
                 return Ok(invitations);
             }
             catch (Exception ex)

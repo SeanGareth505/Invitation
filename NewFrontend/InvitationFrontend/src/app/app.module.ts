@@ -22,6 +22,7 @@ import { AdminComponent } from './admin/admin.component';
 import { TableModule } from 'primeng/table';
 import { MultiSelectModule } from 'primeng/multiselect';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { PaginatorModule } from 'primeng/paginator';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     ToastModule,
     TableModule,
     MultiSelectModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    PaginatorModule 
   ],
   providers: [ApiService, HttpClient, MessageService],
   bootstrap: [AppComponent]

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment.prod';
 import { GetAllInvitationsOutputDTO, SubmitRSVPInputDTO } from '../Interfaces/InvitationInterfaces';
@@ -12,10 +12,14 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  getInvitations(): Observable<GetAllInvitationsOutputDTO[]> {
-    return this.http.get<GetAllInvitationsOutputDTO[]>(`${this.baseUrl}/invitation`);
+  getInvitations(skip: number, take: number): Observable<GetAllInvitationsOutputDTO> {
+    const params = new HttpParams()
+      .set('skip', skip.toString())
+      .set('take', take.toString());
+  
+    return this.http.get<GetAllInvitationsOutputDTO>(`${this.baseUrl}/invitation`, { params });
   }
-
+  
   doesEmailExist(email: string): Observable<boolean> {
     console.log('email', email)
     return this.http.get<boolean>(`${this.baseUrl}/Invitation/CheckEmailExists/${email}`);

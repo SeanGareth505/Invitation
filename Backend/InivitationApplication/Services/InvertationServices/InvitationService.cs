@@ -21,22 +21,33 @@ namespace InivitationApplication.Services.InvertationServices
             return checkExists;
         }
 
-        public async Task<IEnumerable<GetAllInvitationsOutputDTO>> GetAllInvitations()
+        public async Task<GetAllInvitationsOutputDTO> GetAllInvitations(int skip, int take)
         {
-            var allInvitations = _context.Invitations
-                .AsNoTracking()
-                .Select(i => new GetAllInvitationsOutputDTO()
+            var query = _context.Invitations.AsNoTracking().OrderBy(i => i.Id);
+
+            var invitations = await query
+                .Skip(skip)
+                .Take(take)
+                .Select(i => new Invitations
                 {
                     Id = i.Id,
                     Email = i.Email,
                     FirstName = i.FirstName,
                     LastName = i.LastName,
                     SongRequest = i.SongRequest,
-                    IsAccepted = i.IsAccepted,
-                });
+                    IsAccepted = i.IsAccepted
+                })
+                .ToListAsync();
 
-            return await allInvitations.ToListAsync();
+            var totalRecords = await query.CountAsync();
+
+            return new GetAllInvitationsOutputDTO
+            {
+                Invitations = invitations,
+                TotalRecords = totalRecords
+            };
         }
+
 
         public async Task SubmitRSVP(SubmitRSVPInputDTO input)
         {
