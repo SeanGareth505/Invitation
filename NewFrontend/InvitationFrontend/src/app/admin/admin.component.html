@@ -7,18 +7,19 @@
              [rowsPerPageOptions]="[10, 25, 50]" 
              [loading]="loading" 
              [paginator]="false"
+             [lazy]="true"
              currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
              [globalFilterFields]="['email', 'firstName', 'lastName', 'songRequest', 'isAccepted']"
              [tableStyle]="{ 'min-width': '75rem' }"
              (onLazyLoad)="loadInvitationsLazy($event)">
-        <ng-template pTemplate="caption">
+        <!-- <ng-template pTemplate="caption">
             <div class="flex">
                 <span class="p-input-icon-left ml-auto">
                     <i class="pi pi-search"></i>
                     <input pInputText type="text" (input)="filterGlobal($event)" placeholder="Search keyword" />
                 </span>
             </div>
-        </ng-template>
+        </ng-template> -->
         <ng-template pTemplate="header">
             <tr>
                 <th>Email</th>
@@ -29,19 +30,7 @@
             </tr>
             <tr>
                 <th>
-                    <p-columnFilter field="representative" matchMode="in" [showMenu]="false">
-                        <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                            <p-multiSelect [ngModel]="value" appendTo="body" [options]="emailOptions" placeholder="Any"
-                                (onChange)="filter($event.value.email)" optionLabel="name" [maxSelectedLabels]="1"
-                                [selectedItemsLabel]="'{0} items'">
-                                <ng-template let-option pTemplate="item">
-                                    <div class="inline-block vertical-align-middle">
-                                        <span class="ml-1 mt-1">{{ option.email }}</span>
-                                    </div>
-                                </ng-template>
-                            </p-multiSelect>
-                        </ng-template>
-                    </p-columnFilter>
+
                 </th>
                 <th>
                     <p-columnFilter type="text" field="firstName"></p-columnFilter>
@@ -50,7 +39,7 @@
                     <p-columnFilter type="text" field="lastName"></p-columnFilter>
                 </th>
                 <th>
-                    <p-columnFilter type="text" field="songRequest"></p-columnFilter>
+                    <!-- <p-columnFilter type="text" field="songRequest"></p-columnFilter> -->
                 </th>
                 <th>
                     <p-columnFilter type="boolean" field="isAccepted"></p-columnFilter>
@@ -86,12 +75,12 @@
         </ng-template>
     </p-table>
     <div class="primeng-paging-container">
-        <p-paginator #paginator
+        <p-paginator #paginator currentPageReportTemplate="Total records: {totalRecords}" [showCurrentPageReport]="true"
             (onPageChange)="loadInvitationsLazy($event)" [totalRecords]="totalRecords"
             [rows]="defaultRecordsCountPerPage" [rowsPerPageOptions]="predefinedRecordsCountPerPage">
         </p-paginator>
-        <span class="total-records-count">
+        <!-- <span class="total-records-count">
             Total Records: {{ totalRecords }}
-        </span>
+        </span> -->
     </div>
 </mat-card>

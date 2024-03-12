@@ -1,4 +1,4 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ApiService } from '../services/api.service';
 import { LazyLoadEvent } from 'primeng/api';
 import { Table, TableLazyLoadEvent } from 'primeng/table';
@@ -27,21 +27,28 @@ export class AdminComponent implements OnInit {
   defaultRecordsCountPerPage = 10; // Example value, you can change it
   predefinedRecordsCountPerPage = [10, 25, 50];
 
-  constructor(private _apiService: ApiService) {}
+  constructor(private _apiService: ApiService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
-    this.loadInvitationsLazy({ first: this.first, rows: this.rows });
+    // this.loadInvitationsLazy({ first: this.first, rows: this.rows });
   }
 
-  loadInvitationsLazy(event: TableLazyLoadEvent) {
+  loadInvitationsLazy(event: any) {
     this.loading = true;
     this.first = event.first ?? 0;
     this.rows = event.rows ?? 10;
-    this._apiService.getInvitations(this.first, this.rows).subscribe(
+    
+    console.log('event.filters', event.filters)
+    this._apiService.getInvitations(   this.first, 
+      this.rows, 
+      event.filters && event.filters['firstName'] ? event.filters['firstName'].value : undefined, 
+      event.filters && event.filters['lastName'] ? event.filters['lastName'].value : undefined, 
+      event.filters && event.filters['isAccepted']?.value != undefined ? event.filters['isAccepted'].value : undefined).subscribe(
       (data) => {
         this.invites = data.invitations?? [];
         this.totalRecords = data.totalRecords;
         this.loading = false;
+        this.cdr.detectChanges();
       },
       (error) => {
         console.error('Error loading invitations:', error);

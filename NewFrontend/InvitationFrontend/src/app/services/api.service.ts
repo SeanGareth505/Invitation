@@ -12,14 +12,25 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  getInvitations(skip: number, take: number): Observable<GetAllInvitationsOutputDTO> {
-    const params = new HttpParams()
+  getInvitations(skip: number, take: number, firstName?: string, lastName?: string, isAccepted?: boolean): Observable<GetAllInvitationsOutputDTO> {
+    let params = new HttpParams()
       .set('skip', skip.toString())
       .set('take', take.toString());
-  
+
+    if (firstName) {
+      params = params.set('firstName', firstName);
+    }
+
+    if (lastName) {
+      params = params.set('lastName', lastName);
+    }
+
+    if (isAccepted !== undefined) {
+      params = params.set('isAccepted', isAccepted.toString());
+    }
+
     return this.http.get<GetAllInvitationsOutputDTO>(`${this.baseUrl}/invitation`, { params });
   }
-  
   doesEmailExist(email: string): Observable<boolean> {
     console.log('email', email)
     return this.http.get<boolean>(`${this.baseUrl}/Invitation/CheckEmailExists/${email}`);

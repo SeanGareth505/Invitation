@@ -2,6 +2,7 @@
 using InivitationApplication.Models;
 using InivitationApplication.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace InivitationApplication.Services.InvertationServices
 {
@@ -21,13 +22,33 @@ namespace InivitationApplication.Services.InvertationServices
             return checkExists;
         }
 
-        public async Task<GetAllInvitationsOutputDTO> GetAllInvitations(int skip, int take)
+        public async Task<GetAllInvitationsOutputDTO> GetAllInvitations(int skip, int take, string? firstName, string? lastName = null, bool? isAccepted = null)
         {
-            var query = _context.Invitations.AsNoTracking().OrderBy(i => i.Id);
+            // Build the query with filters applied as needed
+            var query = _context.Invitations.AsNoTracking();
 
+            if (!string.IsNullOrWhiteSpace(firstName))
+            {
+                query = query.Where(i => EF.Functions.Like(i.FirstName, $"%{firstName}%"));
+            }
+
+            if (!string.IsNullOrWhiteSpace(lastName))
+            {
+                query = query.Where(i => EF.Functions.Like(i.LastName, $"%{lastName}%"));
+            }
+
+            if (isAccepted.HasValue)
+            {
+                query = query.Where(i => i.IsAccepted == isAccepted.Value);
+            }
+
+            // Order the query
+            query = query.OrderBy(i => i.Id);
+
+            // Execute the query with pagination and project the results
             var invitations = await query
-                .Skip(skip)
-                .Take(take)
+            .Skip(skip)
+            .Take(take)
                 .Select(i => new Invitations
                 {
                     Id = i.Id,
@@ -39,14 +60,17 @@ namespace InivitationApplication.Services.InvertationServices
                 })
                 .ToListAsync();
 
+            // Calculate the total number of records that match the filters
             var totalRecords = await query.CountAsync();
 
+            // Construct and return the DTO
             return new GetAllInvitationsOutputDTO
             {
                 Invitations = invitations,
                 TotalRecords = totalRecords
             };
         }
+
 
 
         public async Task SubmitRSVP(SubmitRSVPInputDTO input)

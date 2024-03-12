@@ -7,6 +7,6 @@ namespace InivitationApplication.Services.Interfaces
     {
         Task<bool> CheckEmailExists(string email);
         Task SubmitRSVP(SubmitRSVPInputDTO input);
-        Task<GetAllInvitationsOutputDTO> GetAllInvitations(int skip, int take);
+        Task<GetAllInvitationsOutputDTO> GetAllInvitations(int skip, int take, string? firstName = null, string? lastName = null, bool? isAccepted = null);
     }
 }

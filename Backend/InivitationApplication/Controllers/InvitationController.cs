@@ -20,11 +20,11 @@ namespace InivitationApplication.Controllers
 
 
         [HttpGet]
-        public async Task<IActionResult> GetAllInvitations(int skip = 0, int take = 10)
+        public async Task<IActionResult> GetAllInvitations(int skip = 0, int take = 10, string? firstName = null, string? lastName = null, bool? isAccepted = null)
         {
             try
             {
-                var invitations = await _invitationService.GetAllInvitations(skip, take);
+                var invitations = await _invitationService.GetAllInvitations(skip, take, firstName, lastName, isAccepted);
                 return Ok(invitations);
             }
             catch (Exception ex)
@@ -33,6 +33,7 @@ namespace InivitationApplication.Controllers
                 return StatusCode(500, "Internal server error");
             }
         }
+
 
         [HttpGet("CheckEmailExists/{email}")]
         public async Task<IActionResult> CheckEmailExists(string email)
