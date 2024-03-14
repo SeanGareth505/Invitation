@@ -25,15 +25,7 @@ builder.Configuration.AddJsonFile(appSettingsFile, optional: true, reloadOnChang
 var connectionStringName = isDevelopment ? "DefaultConnection" : "ProductionConnection";
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
-    options.UseSqlServer(builder.Configuration.GetConnectionString(connectionStringName),
-        sqlServerOptions =>
-        {
-            // Adjust connection pool settings
-            sqlServerOptions.EnableRetryOnFailure();
-            sqlServerOptions.MaxBatchSize(100);
-            sqlServerOptions.MinBatchSize(10);
-            sqlServerOptions.CommandTimeout(30); // Command timeout in seconds
-        });
+    options.UseNpgsql(builder.Configuration.GetConnectionString(connectionStringName));
 });
 
 // Add services to the container

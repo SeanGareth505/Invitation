@@ -2,7 +2,7 @@
 {
     public class LogEntry
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public DateTime Date { get; set; } = DateTime.UtcNow;
         public string LogLevel { get; set; }
         public string Category { get; set; }
